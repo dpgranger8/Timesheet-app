@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-analytics-table',
-  standalone: false,
+  standalone: true,
   templateUrl: './analytics-table.html',
   styleUrl: './analytics-table.scss'
 })

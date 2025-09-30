@@ -1,7 +1,14 @@
-import { platformBrowser } from '@angular/platform-browser';
-import { AppModule } from './app/app-module';
+// main.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { provideBrowserGlobalErrorListeners } from '@angular/core';
 
-platformBrowser().bootstrapModule(AppModule, {
-  ngZoneEventCoalescing: true,
-})
-  .catch(err => console.error(err));
+import { routes } from '../src/app/modules/app-routes';
+import { App } from '../src/app/app';
+
+bootstrapApplication(App, {
+  providers: [
+    provideRouter(routes),
+    provideBrowserGlobalErrorListeners()
+  ]
+}).catch(err => console.error(err));
