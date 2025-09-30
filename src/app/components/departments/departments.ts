@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentsService } from '../../services/departments';
 import { Department } from '../../interfaces/department';
-import { MatCardModule } from '@angular/material/card'
-import { MatListModule } from '@angular/material/list';
+import { MaterialModule } from '../../modules/material-module';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-departments',
   standalone: true,
   imports: [
-    MatCardModule,
-    MatListModule,
+    MaterialModule
   ],
   templateUrl: './departments.html',
   styleUrls: ['./departments.scss']
