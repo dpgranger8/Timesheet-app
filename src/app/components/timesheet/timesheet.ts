@@ -4,14 +4,12 @@ import { Department } from '../../interfaces/department';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { MaterialModule } from '../../modules/material-module';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-timesheet',
   standalone: true,
   imports: [
     MaterialModule,
-    ReactiveFormsModule,
   ],
   templateUrl: './timesheet.html',
   styleUrl: './timesheet.scss'
