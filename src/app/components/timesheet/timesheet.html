@@ -5,26 +5,26 @@
         }
         <mat-card>
             <form #f="ngForm" (ngsubmit)="onSubmit()">
-                <mat-form-field>
-                    <input matInput [formControl]="employeeNameFC" placeholder="Employee Name" type="text">
-                    @if (employeeNameFC.hasError('duplicate')) {
-                        <mat-error>Duplicate Name</mat-error>
-                    }
-                </mat-form-field>
-    
-                <button
-                    (click)="addEmployee()"
-                    [disabled]="employeeNameFC.invalid"
-                    color="primary"
-                    type="submit"
-                    mat-mini-fab>
-                    <mat-icon>add</mat-icon>
-                </button>
-                <div>
-                    @if (employees && employees.length > 0) {
-                        <div>{{ employees | json }}</div>
-                    }
+                <div class="add-employee-row">
+                    <mat-form-field>
+                        <input matInput [formControl]="employeeNameFC" placeholder="Employee Name" type="text">
+                        @if (employeeNameFC.hasError('duplicate')) {
+                            <mat-error>Duplicate Name</mat-error>
+                        }
+                    </mat-form-field>
+        
+                    <button
+                        (click)="addEmployee()"
+                        [disabled]="employeeNameFC.invalid"
+                        color="primary"
+                        type="submit"
+                        mat-mini-fab>
+                        <mat-icon>add</mat-icon>
+                    </button>
                 </div>
+                @if (employees && employees.length > 0) {
+                    <div>{{ employees | json }}</div>
+                }
             </form>
         </mat-card>
     </div>

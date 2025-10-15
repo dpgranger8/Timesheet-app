@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentsService } from '../../services/departments';
 import { Department } from '../../interfaces/department';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { MaterialModule } from '../../modules/material-module';
 import { Employee } from '../../interfaces/employee';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms'
 
 @Component({
   selector: 'app-timesheet',
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 export class Timesheet implements OnInit {
   department!: Department;
   departments!: Department[];
-  employeeNameFC = new FormControl('');
+  employeeNameFC = new FormControl('', this.nameValidator());
 
   employees: Employee[] = [];
   employeeID = 0;
@@ -57,6 +57,21 @@ export class Timesheet implements OnInit {
   onSubmit() {
     if (this.employeeNameFC.valid) {
       this.addEmployee()
+    }
+  }
+
+  nameValidator(): ValidatorFn {
+    return (control:AbstractControl): { [key: string]: any } | null => {
+      let error = null;
+      if (this.employees && this.employees.length) {
+        this.employees.forEach(employee => {
+          //compare the lowercase input value with all the existing employee names already in the array
+          if (employee.name.toLowerCase() === control.value.toLowerCase()) {
+            error = {duplicate: true};
+          }
+        })
+      }
+      return error;
     }
   }
   
